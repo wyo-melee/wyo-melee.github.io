@@ -83,11 +83,10 @@
       const urlParams = new URLSearchParams(window.location.search);
       const replayName = urlParams.get('replay');
       const subDir = urlParams.get('subDir');
-      fetch('/replays/' + subDir + "/" + replayName + ".json")
-        .then(response => response.json())
+      fetch('/replays/' + subDir + "/" + replayName + ".slp")
+        .then(response => response.arrayBuffer())
         .then(slp_replay => {
-          console.log(slp_replay);
-          start(slp_replay);
+          start({data: {isSlippi: true, replay: slp_replay}});
         });
     </script>
   </body>
